@@ -1,0 +1,450 @@
+/* General */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background: url('/img/hogwartsClaro.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    transition: background 0.3s ease;
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
+
+/* Modo oscuro */
+
+body.dark-mode {
+    background: url('/img/hogwartsOscuro.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+/* Estilos del contenedor principal */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; /* Para mantener los contenedores uno al lado del otro en pantallas grandes */
+    gap: 20px; /* Espacio entre contenedores */
+    padding: 20px; /* Espacio interior del contenedor */
+    flex-wrap: wrap; /* Permite que los contenedores se ajusten en pantallas pequeñas */
+}
+
+/* Estilos para centrar el título */
+
+h1 {
+    font-size: calc(2vw + 2rem); /* Tamaño adaptable basado en el viewport width */
+    margin: 20px 0;
+    text-align: center;
+    color: black; /* Color por defecto */
+    word-break: break-word; /* Ajusta el texto para evitar el overflow */
+}
+
+/* Título en modo oscuro */
+
+body.dark-mode h1 {
+    color: white; /* Cambiar color del título en modo oscuro */
+}
+
+/* Estilos para el título con animación de máquina de escribir */
+
+.animated-title {
+    font-size: calc(2vw + 2rem); /* Tamaño adaptable basado en el viewport width */
+    overflow: hidden; /* Oculta el texto fuera del contenedor */
+    white-space: nowrap; /* Evita que el texto se divida en líneas */
+    border-right: none; /* Elimina la línea del cursor */
+    animation: typing 5s steps(40, end); /* Animación para el tipo máquina de escribir */
+    font-family: 'Courier New', Courier, monospace; /* Fuente tipo máquina de escribir */
+}
+
+/* Animación de escritura */
+
+@keyframes typing {
+    from {
+        width: 0; /* Comienza con el ancho en 0 */
+    }
+    to {
+        width: 100%; /* Finaliza con el ancho en el 100% del texto */
+    }
+}
+
+/* Centrando los textarea */
+
+.text-section textarea,
+.image-or-result-section textarea {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Sección de texto */
+
+.text-section {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Permite que el contenedor crezca según sea necesario */
+    min-width: 0; /* Permite que el contenedor se reduzca sin problemas */
+}
+
+/* Sección de imagen o resultado */
+
+.image-or-result-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1; /* Permite que el contenedor crezca según sea necesario */
+    min-width: 0; /* Permite que el contenedor se reduzca sin problemas */
+}
+
+/* Capa de fondo semi-transparente dentro de image-or-result-section */
+
+.image-or-result-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Asegura que la capa esté sobre la imagen */
+}
+
+/* Contenedor de resultados */
+
+/* Contenedor de resultados */
+#output-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 12px; /* Igualar los bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Igualar el estilo de sombra */
+    z-index: 10;
+}
+
+/* Estilos de textarea dentro del contenedor de resultados */
+#output-container textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Igualar los bordes redondeados */
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    resize: none;
+    outline: none; /* Remueve el borde negro al hacer clic */
+}
+
+
+/* Estilos de la imagen */
+
+#placeholderImage {
+    max-height: 200px;
+    object-fit: contain;
+    width: auto;
+    z-index: 0; /* Asegura que la imagen esté detrás de la capa de fondo */
+}
+
+/* Estilos para textarea */
+
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    resize: none;
+    outline: none; /* Remueve el borde negro al hacer clic */
+}
+
+/* Contenedor de botones */
+
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Botones más pequeños, redondeados y con animación */
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: 2px solid transparent;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #800080; /* Color morado al pasar el mouse */
+    border-color: #fff; /* Bordes brillantes */
+    box-shadow: 0 0 10px rgba(128, 0, 128, 0.5); /* Efecto de brillo en los bordes */
+}
+
+/* Mensajes de error */
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+    display: none;
+}
+
+/* Botón de copiar */
+
+.copy-button {
+    display: none; /* Ocultar por defecto */
+    margin-top: 10px;
+}
+
+/* Estilos del interruptor de tema */
+
+.theme-switch {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.theme-switch input {
+    display: none; /* Ocultar el checkbox por defecto */
+}
+
+.theme-switch .slider {
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background: grey; /* Color cuando está inactivo */
+    border-radius: 25px;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.theme-switch .slider::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 21px;
+    width: 21px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+input:checked + .slider {
+    background: #007bff; /* Color cuando está activo */
+}
+
+input:checked + .slider::before {
+    transform: translateX(25px); /* Mover el círculo al estado activado */
+}
+
+/* Estilos del footer */
+
+footer {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 25px; /* Aumentar el padding para hacer el footer más grueso */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+    min-height: 80px; /* Aumentar la altura mínima */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos de los íconos en el footer */
+
+.social-buttons {
+    display: flex;
+    gap: 15px; /* Espacio entre íconos */
+}
+
+.social-buttons img {
+    width: 30px; /* Tamaño de íconos */
+    height: 30px; /* Tamaño de íconos */
+    transition: transform 0.3s ease;
+}
+
+/* Animación de temblor para los íconos del footer */
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    50% { transform: translateX(4px); }
+    75% { transform: translateX(-4px); }
+}
+
+.social-buttons img:hover {
+    animation: shake 0.5s; /* Duración del temblor */
+}
+
+/* Animación de rotación */
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Animación de humo */
+
+@keyframes smoke-effect {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(2);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
+}
+
+/* Animación de aparición con humo */
+
+@keyframes appear-with-smoke {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.rotate {
+    animation: rotate 2s forwards;
+}
+
+.smoke {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(173, 216, 230, 0.8); /* Azul claro */
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0; /* Comienza invisible */
+}
+
+.show-smoke {
+    animation: smoke-effect 2s forwards;
+}
+
+.appear {
+    animation: appear-with-smoke 2s forwards;
+}
+
+/* Estilos responsivos */
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 10px; /* Espacio entre contenedores en pantallas pequeñas */
+        padding: 10px; /* Reducir padding en pantallas pequeñas */
+    }
+
+    .text-section,
+    .image-or-result-section {
+        width: 100%; /* Asegura que los contenedores ocupen el ancho completo */
+        margin: 0; /* Eliminar margen en pantallas pequeñas */
+        box-sizing: border-box; /* Asegura que el padding y border estén incluidos en el ancho total */
+    }
+
+    #output-container {
+        margin-bottom: 15px; /* Espacio para evitar que se sobreponga al footer */
+    }
+
+    h1 {
+        font-size: calc(1.5rem + 2vw); /* Ajustar tamaño del texto para pantallas pequeñas */
+        margin: 10px 0; /* Reducir margen en pantallas pequeñas */
+        word-wrap: break-word; /* Asegura que el texto se ajuste al contenedor */
+    }
+
+    .animated-title {
+        animation: none; /* Desactivar la animación en pantallas pequeñas */
+    }
+
+    footer {
+        padding: 20px;
+        box-shadow: none; /* Eliminar la sombra en pantallas pequeñas */
+        width: 100%;
+    }
+
+    body {
+        padding-bottom: 70px; /* Espacio suficiente para el footer */
+    }
+}
+
+/* Estilos para pantallas de teléfonos móviles */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 5px; /* Reducir padding para pantallas más pequeñas */
+    }
+
+    .text-section,
+    .image-or-result-section {
+        padding: 10px; /* Reducir padding para pantallas más pequeñas */
+    }
+
+    h1 {
+        font-size: calc(1.2rem + 2vw); /* Ajustar tamaño del texto para pantallas de teléfonos */
+        margin: 5px 0; /* Reducir margen en pantallas más pequeñas */
+    }
+
+    #output-container {
+        margin-bottom: 10px; /* Asegura espacio entre el contenedor de resultados y el footer */
+    }
+
+    .copy-button {
+        display: block; /* Asegura que el botón de copiar esté visible en pantallas móviles */
+    }
+}

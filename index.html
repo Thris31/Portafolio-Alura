@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encriptador de Texto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <label class="theme-switch">
+        <input type="checkbox" id="themeSwitch">
+        <span class="slider"></span>
+    </label>
+    <h1 class="animated-title">Encriptador de Texto</h1>
+    <div class="container">
+        <div class="text-section">
+            <div class="input-container">
+                <textarea id="inputText" placeholder="Escribe el texto aquí..."></textarea>
+                <div id="error-message" class="error-message"></div>
+                <div id="empty-text-message" class="error-message" style="display: none;">No se encontró texto para procesar.</div>
+            </div>
+            <div class="button-container">
+                <button onclick="processText('encrypt')">Encriptar</button>
+                <button onclick="processText('decrypt')">Desencriptar</button>
+                <button onclick="clearText()">Borrar</button>
+            </div>
+        </div>
+        <div class="image-or-result-section">
+            <img id="placeholderImage" src="/img/varita1.png" alt="Varita">
+            <div id="smoke"></div> <!-- Contenedor para el humo -->
+            <div class="output-container fade-in" id="output-container">
+                <textarea id="outputText" readonly placeholder="Resultado aparecerá aquí..."></textarea>
+                <button id="copyButton" class="copy-button" onclick="copyText()">Copiar</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>Desarrollado por Thristal Guerra para Alura</p>
+        </div>
+        <div class="social-buttons">
+            <a href="https://github.com/Thris31" target="_blank">
+                <img src="/img/Github.png" alt="GitHub">
+            </a>
+            <a href="www.linkedin.com/in/thristal-paola-guerra-de-abreu-4662652a8" target="_blank">
+                <img src="/img/linkedin.png" alt="LinkedIn">
+            </a>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
